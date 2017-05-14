@@ -9,8 +9,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.mrpetrovich.tabatatimer.MainActivity">
 
-    <TextView
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id="@+id/imageButton"
+        android:src="@drawable/main_button_start"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

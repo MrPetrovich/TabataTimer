@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TabataTimer</string>
+
+    <string name="title_activity_timer">TimerActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
