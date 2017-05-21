@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 
 import com.mrpetrovich.tabatatimer.R;
 
@@ -34,6 +35,12 @@ public class TimerActivity extends AppCompatActivity {
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
     private View mContentView;
+
+    private int totalSeconds = 0;
+    private int seconds = 0;
+    private boolean training = false;
+    private boolean running;
+
     private final Runnable mHidePart2Runnable = new Runnable() {
         @SuppressLint("InlinedApi")
         @Override
@@ -108,7 +115,7 @@ public class TimerActivity extends AppCompatActivity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.btnPauseStart).setOnTouchListener(mDelayHideTouchListener);
-
+        runTimer();
     }
 
     @Override
@@ -163,4 +170,47 @@ public class TimerActivity extends AppCompatActivity {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
+    public void startPauseBtnClick(View view)
+    {
+        if(running)
+            running = false;
+        else
+            running = true;
+    }
+    private void runTimer()
+    {
+        final TextView tvTime = (TextView)findViewById(R.id.tvTimer);
+        final TextView tvSec = (TextView)findViewById(R.id.tvSeconds);
+        final Handler handler = new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                //int hours = seconds/3600;
+                int minutes = (totalSeconds%3600)/60;
+                int secs = totalSeconds%60;
+                int secnd = seconds%60;
+                String time = String.format("%02d:%02d", minutes, secs);
+                String sec = String.format("%02d", secnd);
+                tvTime.setText(time);
+                tvSec.setText(sec);
+                if(seconds==10 && !training)
+                {
+                    seconds=0;
+                    training = true;
+                }
+                if(seconds==20 && training)
+                {
+                    seconds=0;
+                    training = false;
+                }
+                if(running)
+                {
+                    totalSeconds++;
+                    seconds++;
+                }
+                handler.postDelayed(this, 1000);
+            }
+        });
+    }
+
 }

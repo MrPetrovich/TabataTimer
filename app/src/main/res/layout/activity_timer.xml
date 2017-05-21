@@ -32,7 +32,7 @@
         android:keepScreenOn="true"
         android:text="@string/time_content"
         android:textColor="#33b5e5"
-        android:textSize="60sp"
+        android:textSize="80sp"
         android:textStyle="bold"
         android:layout_weight="1"
         android:layout_gravity="center_horizontal|top" />
@@ -44,17 +44,18 @@
         android:layout_height="123dp"
         android:layout_weight="1"
         android:text="@string/pause_button"
+        android:onClick="startPauseBtnClick"
         android:layout_gravity="right|bottom" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvSeconds"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="259dp"
         android:gravity="center"
         android:keepScreenOn="true"
         android:text="@string/second_content"
         android:textColor="#33b5e5"
-        android:textSize="200sp"
+        android:textSize="230sp"
         android:textStyle="bold"
         android:layout_weight="1"
         android:layout_gravity="center" />
